@@ -8,6 +8,9 @@ export function SesionProvider({children}){
     const [difficulty, setDifficulty] = useState('');
     const [sesion, setSesion] = useState('');
     const [attempts, setAttempts] = useState([]);
+    const [solutions, setSolutions] = useState([])
+    const [gameOver, setGameOver] = useState(false);
+    const [gameWon, setGameWon] = useState(false);
 
     const getDifficulties = async () => {
         const response =  await api.get("/difficulties");
@@ -44,6 +47,12 @@ export function SesionProvider({children}){
                 attempts,
                 setAttempts,
                 checkWord,
+                gameOver,
+                setGameOver,
+                gameWon,
+                setGameWon,
+                solutions,
+                setSolutions,
             }}
         >
             {children}

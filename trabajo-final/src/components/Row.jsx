@@ -5,10 +5,7 @@ import toast from "react-hot-toast";
 
 export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
     
-    const {sesion, attempts, setAttempts, checkWord} = useSesion();
-    //const [activeLetterBox, setActiveLetterBox] = useState(0);
-    //const [currentWord, setCurrentWord] = useState([]);
-
+    const {sesion, attempts, setAttempts, checkWord, solutions,setSolutions} = useSesion();
     const activeLetterBox = useRef(0);
     const currentWord = useRef([]);
     const [renderWord, setRenderWord] = useState([...currentWord.current]);
@@ -16,9 +13,14 @@ export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
    const checkCurrentWord =  () => {
         checkWord([...currentWord.current])
             .then((res) => {
+                const newSolutions = [...solutions];
+                newSolutions[keyRow] = res;
+                setSolutions(newSolutions);
+                
                 const newAttempts = [...attempts];
                 newAttempts[keyRow] = [...currentWord.current];
                 setAttempts(newAttempts);
+                
                 setActiveRow(activeRow+1);
 
                 currentWord.current = [];
@@ -73,14 +75,14 @@ export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
         return cleanUp;
     },[isActiveRow,attempts,keyRow,activeRow,checkWord])
     
-    
+
     return (
         <div className={`flex row ${isActiveRow?"active": ""}`}>
             {isActiveRow?([...Array(sesion.wordLenght)].map((_,i) => 
-                    <LetterBox key={i} isActive={i === activeLetterBox.current}>{currentWord.current[i]}</LetterBox>
+                    <LetterBox key={i}>{renderWord[i]}</LetterBox>
             )):(
                 [...Array(sesion.wordLenght)].map((_,i) => 
-                    <LetterBox key={i}>{attempts[keyRow]? attempts[keyRow][i]:""}</LetterBox>
+                    <LetterBox key={i} solution={solutions[keyRow]? solutions[keyRow][i]:''} >{attempts[keyRow]? attempts[keyRow][i]:""}</LetterBox>
             ))}
         </div>
     )

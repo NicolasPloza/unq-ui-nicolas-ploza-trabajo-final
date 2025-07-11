@@ -51,10 +51,27 @@
   text-transform: capitalize;
   font-weight: 600;
   font-size: 1rem;
+  transition: transform 0.6s ease;
 }
 
-.active {
-  background-color: #363636;
+.letter-box.absent{
+  transform: rotateX(360deg);
+  background-color: #a4aec4;
+}
+
+.letter-box.elsewhere{
+  transform: rotateX(360deg);
+  background-color: #f3c237;
+}
+
+.letter-box.correct{
+  transform: rotateX(360deg);
+  background-color: #79b851;
+}
+
+.active div{
+  border-color: #646cff;
+
 }
 
 

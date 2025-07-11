@@ -5,7 +5,6 @@ import Row from "./Row";
 
 export default function Board(){
     const [loading, setLoading] = useState();
-    const {sesion, attempts} = useSesion();
     const [activeRow, setActiveRow] = useState(0);
 
 

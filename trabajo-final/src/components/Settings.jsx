@@ -19,7 +19,7 @@ export default function Settings(){
     }
 
     useEffect( () => {
-        setLoading(true)
+        setLoading(true);
         getDifficulties()
             .then((res) => {
                 setDifficulties(res);
@@ -35,7 +35,7 @@ export default function Settings(){
     
     return(
         <div className="flex column">
-            {difficulties.map((dif) => ( <button key={dif.id} onClick={() => handleClick(dif)} >{dif.name}</button>))}
+            {difficulties.map((dif) => ( <button className="difficulty-button" key={dif.id} onClick={() => handleClick(dif)} >{dif.name}</button>))}
         </div>   
     )
 }

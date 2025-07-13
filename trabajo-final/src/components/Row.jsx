@@ -2,15 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import { useSesion } from "../contexts/SesionContext"
 import LetterBox from "./LetterBox";
 import toast from "react-hot-toast";
+import { ATTEMPTS_AMOUNT } from "../constants";
 
 export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
     
-    const {sesion, attempts, setAttempts, checkWord, solutions,setSolutions} = useSesion();
+    const {sesion, attempts, setAttempts, checkWord, solutions,setSolutions, gameWon, setGameWon,gameOver, setGameOver} = useSesion();
     const activeLetterBox = useRef(0);
     const currentWord = useRef([]);
     const [renderWord, setRenderWord] = useState([...currentWord.current]);
-    
-   const checkCurrentWord =  () => {
+    const loading = useRef(false);
+
+    const checkCurrentWord =  () => {
+            
+        toast.loading('Checking word...', {id: "handle-word"});
+        
+
         checkWord([...currentWord.current])
             .then((res) => {
                 const newSolutions = [...solutions];
@@ -26,21 +32,37 @@ export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
                 currentWord.current = [];
                 activeLetterBox.current = 0;
                 setRenderWord([...currentWord.current]);
+
+                setGameWon(res.every( sol => sol.solution === 'correct'));
+
+                toast.dismiss("handle-word");
             })
             .catch((error) => {
-                toast.error(error.message);
+                toast.error(error.message, {id: "handle-word"});
                 currentWord.current = [];
                 activeLetterBox.current = 0;
                 setRenderWord([...currentWord.current]);
+            })
+            .finally(() => {
+                loading.current = false;
+                setGameOver( !!!gameWon && attempts.length === ATTEMPTS_AMOUNT-1);
             });
-   }
+
+    }
+
     
     useEffect(() => {
-        if(!isActiveRow) return;
+
+        if(!isActiveRow ||gameWon || gameOver) return;
+
 
         const handleKeydown = (ev) => {
+            if (loading.current) return;
+
             if(activeLetterBox.current === sesion.wordLenght && ev.key === 'Enter'){
+                loading.current = true;
                 checkCurrentWord();  
+                
                 return;
             }
 
@@ -53,7 +75,7 @@ export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
                 return;
             }
 
-            if(/^[a-zA-ZñÑ]$/.test(ev.key) && activeLetterBox.current < sesion.wordLenght){
+            if(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ]$/.test(ev.key) && activeLetterBox.current < sesion.wordLenght){
                 currentWord.current[activeLetterBox.current] = ev.key.toLowerCase();
                 activeLetterBox.current++;
 
@@ -63,8 +85,11 @@ export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
             }
 
             if(activeLetterBox.current < sesion.wordLenght && ev.key === 'Enter'){
-                toast.error('Complete the word');
-            }
+                toast.error('Complete the word', {id: "handle-word"});
+                
+                return;
+        }
+            
         }
         
         const cleanUp = () => {
@@ -72,8 +97,11 @@ export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
         }
 
         document.addEventListener('keydown', handleKeydown);
+
+        
         return cleanUp;
     },[isActiveRow,attempts,keyRow,activeRow,checkWord])
+
     
 
     return (

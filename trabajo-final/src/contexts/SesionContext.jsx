@@ -11,6 +11,7 @@ export function SesionProvider({children}){
     const [solutions, setSolutions] = useState([])
     const [gameOver, setGameOver] = useState(false);
     const [gameWon, setGameWon] = useState(false);
+ 
 
     const getDifficulties = async () => {
         const response =  await api.get("/difficulties");

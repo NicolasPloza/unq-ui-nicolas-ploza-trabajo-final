@@ -1,36 +1,6 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
 
 .game {
@@ -74,6 +44,65 @@
 
 }
 
+.difficulty-button{
+  padding: 1rem;
+  width: 10rem;
+  margin: 0.25rem;
+  background-color: #57ac57;
+  
+}
+
+.toast{
+  margin-top: 6rem;
+}
+
+.game-over-modal{
+  background-color: #3d4054;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  width: 20rem;
+  position: absolute;
+  z-index: 1000;
+  animation: slideDown 0.6s ease forwards;
+  opacity: 0; 
+  border-radius: 0.5rem;
+  align-self: flex-start;
+}
+
+.game-over-modal button{
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #57ac57;
+  margin: 2rem;
+}
+.topList{
+  background-color: #313448;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  height: 41px;
+  padding: 0.5rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+}
+
+@keyframes slideDown {
+  80% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
 
 /*GENERALES*/
 .flex {
@@ -91,3 +120,10 @@
   flex-direction: row;
   gap: 0.4rem;
 }
+
+.overshadow{
+  filter: opacity(0.2);
+}
+
+
+

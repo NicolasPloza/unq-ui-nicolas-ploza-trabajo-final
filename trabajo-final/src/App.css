@@ -11,9 +11,11 @@
   color: #888;
 }
 
+/*LETTERS*/
+
 .letter-box {
   width: 3.5rem;
-  aspect-ratio: 1/1;
+  height: 3.5rem;
   border-radius: 0.3rem;
   border-color: #888;
   border-style: solid;
@@ -47,14 +49,16 @@
 .difficulty-button{
   padding: 1rem;
   width: 10rem;
-  margin: 0.25rem;
+  margin: 0.25rem 4rem;
   background-color: #57ac57;
-  
 }
+
 
 .toast{
   margin-top: 6rem;
 }
+
+/*GAME OVER MODAL*/
 
 .game-over-modal{
   background-color: #3d4054;
@@ -91,6 +95,11 @@
   border-top-left-radius: 0.5rem;
 }
 
+.confetti{
+  position: absolute;
+  z-index: 500;
+}
+
 @keyframes slideDown {
   80% {
     transform: translateY(-50px);
@@ -102,7 +111,15 @@
   }
 }
 
+/*KEYBOARD*/
+.keyboard{
+  padding-top: 2rem;
+}
 
+.key-row .enter{
+    padding: 1rem;
+    width: auto;
+}
 
 /*GENERALES*/
 .flex {
@@ -124,6 +141,8 @@
 .overshadow{
   filter: opacity(0.2);
 }
+
+
 
 
 

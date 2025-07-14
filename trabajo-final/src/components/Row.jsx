@@ -6,15 +6,15 @@ import { ATTEMPTS_AMOUNT } from "../constants";
 
 export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
     
-    const {sesion, attempts, setAttempts, checkWord, solutions,setSolutions, gameWon, setGameWon,gameOver, setGameOver} = useSesion();
+    const {sesion, attempts, setAttempts, checkWord, solutions,setSolutions, gameWon, setGameWon,gameOver, setGameOver, toastId} = useSesion();
     const activeLetterBox = useRef(0);
     const currentWord = useRef([]);
     const [renderWord, setRenderWord] = useState([...currentWord.current]);
     const loading = useRef(false);
 
     const checkCurrentWord =  () => {
-            
-        toast.loading('Checking word...', {id: "handle-word"});
+        loading.current = true;
+        toast.loading('Checking word...', {id: toastId.current});
         
 
         checkWord([...currentWord.current])
@@ -34,18 +34,18 @@ export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
                 setRenderWord([...currentWord.current]);
 
                 setGameWon(res.every( sol => sol.solution === 'correct'));
-
-                toast.dismiss("handle-word");
+                setGameOver( !!!gameWon && attempts.length === ATTEMPTS_AMOUNT-1);
+                toast.dismiss(toastId.current);
             })
             .catch((error) => {
-                toast.error(error.message, {id: "handle-word"});
+                toast.error(error.message, {id: toastId.current});
                 currentWord.current = [];
                 activeLetterBox.current = 0;
                 setRenderWord([...currentWord.current]);
             })
             .finally(() => {
-                loading.current = false;
-                setGameOver( !!!gameWon && attempts.length === ATTEMPTS_AMOUNT-1);
+               loading.current = false;
+                
             });
 
     }
@@ -60,7 +60,7 @@ export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
             if (loading.current) return;
 
             if(activeLetterBox.current === sesion.wordLenght && ev.key === 'Enter'){
-                loading.current = true;
+                //loading.current = true;
                 checkCurrentWord();  
                 
                 return;
@@ -85,7 +85,7 @@ export default function Row({keyRow, isActiveRow, activeRow, setActiveRow}) {
             }
 
             if(activeLetterBox.current < sesion.wordLenght && ev.key === 'Enter'){
-                toast.error('Complete the word', {id: "handle-word"});
+                toast.error('Complete the word', {id: toastId.current});
                 
                 return;
         }

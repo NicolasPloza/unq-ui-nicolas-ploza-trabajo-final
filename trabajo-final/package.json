@@ -15,6 +15,7 @@
     "react-confetti": "^6.4.0",
     "react-dom": "^19.1.0",
     "react-hot-toast": "^2.5.2",
+    "react-use": "^17.6.0",
     "toast": "^0.5.4"
   },
   "devDependencies": {

@@ -3,13 +3,17 @@ import { useSesion } from "../contexts/SesionContext"
 import Board from "./Board";
 import Settings from "./Settings";
 import GameOverModal from "./GameOverModal";
+import { useWindowSize } from 'react-use'
+import Confetti from 'react-confetti'
 
 export default function Game(){
     
-    const {sesion, setSesion} =  useSesion();
+    const {sesion, gameWon} =  useSesion();
+    const {widht,height} =  useWindowSize();
 
     return(
         <div className="flex game">
+            {gameWon && <Confetti className="confetti" width={widht} height={height} />}
             <GameOverModal/>
             {sesion? (
                 <Board/>

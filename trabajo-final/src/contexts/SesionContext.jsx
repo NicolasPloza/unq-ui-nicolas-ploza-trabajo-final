@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState, useRef } from "react"
 import { API_URL } from "../constants";
 import api from "../services/api";
 
@@ -11,7 +11,7 @@ export function SesionProvider({children}){
     const [solutions, setSolutions] = useState([])
     const [gameOver, setGameOver] = useState(false);
     const [gameWon, setGameWon] = useState(false);
- 
+    const toastId = useRef("toast");
 
     const getDifficulties = async () => {
         const response =  await api.get("/difficulties");
@@ -54,6 +54,7 @@ export function SesionProvider({children}){
                 setGameWon,
                 solutions,
                 setSolutions,
+                toastId,
             }}
         >
             {children}

@@ -5,27 +5,30 @@ import Row from "./Row";
 import GameOverModal from "./GameOverModal";
 import toast from "react-hot-toast";
 import KeyBoard from "./KeyBoard";
+import { useBoard } from "../contexts/BoardContext";
 
 export default function Board(){
-    const [activeRow, setActiveRow] = useState(0);
-    const {gameOver, gameWon, toastId} = useSesion();
+    const {row, activeRow} = useBoard();
+    const {gameOver, gameWon, toastId, setGameOver} = useSesion();
 
+    const handleClick = () => {
+        setGameOver(true);
+    }
+    
     useEffect(() => {
         toast('Guess the first word', {id: toastId.current, duration: 1000});
-    
     },[])
 
     return (
-        <div className="flex column">
-            <div className={`flex column ${(gameWon || gameOver)? "overshadow": ""}`}>
+        <div className={`flex column ${(gameWon || gameOver)? "overshadow": ""}`}>
+            <header><button onClick={handleClick}>Give up</button></header>
+            <div>
                 {[...Array(ATTEMPTS_AMOUNT)]
-                    .map((_,i) => <Row key={i} keyRow={i} activeRow={activeRow} setActiveRow={setActiveRow} isActiveRow={i === activeRow}/>)}
+                    .map((_,i) => <Row key={i} keyRow = {i} isActiveRow={i === activeRow}/>)}
             </div>
             <div className="key-board-container">
                 <KeyBoard/>
             </div>
-        </div>
-        
-        
+        </div>        
     )
 }

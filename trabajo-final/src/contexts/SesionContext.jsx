@@ -12,6 +12,7 @@ export function SesionProvider({children}){
     const [gameOver, setGameOver] = useState(false);
     const [gameWon, setGameWon] = useState(false);
     const toastId = useRef("toast");
+    const sesionLoading = useRef(false);
 
     const getDifficulties = async () => {
         const response =  await api.get("/difficulties");
@@ -55,6 +56,7 @@ export function SesionProvider({children}){
                 solutions,
                 setSolutions,
                 toastId,
+                sesionLoading
             }}
         >
             {children}

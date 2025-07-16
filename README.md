@@ -7,9 +7,12 @@
 
 4- correr el comando "npm install" para descargar todas las dependencias necesarias 
 
-## Ejecutar proyecto
-5- finalmente, Para correr el proyecto, ingresar el comando "npm run dev" 
+## Ejecutar proyecto 
+5- siguiendo en la misma carpeta que el punto 4,  Para correr el proyecto ingresar el comando "npm run dev" 
 
 6- Abrir en el navegador el puerto local donde este corriendo la app (por defecto  http://localhost:5173/)
 
 7- elegir dificultad y empezar a jugar 
+
+
+ACLARACION: debe tener instalado Node.js version 20.19+ 

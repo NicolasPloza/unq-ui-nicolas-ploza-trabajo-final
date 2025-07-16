@@ -24,7 +24,7 @@ export default function KeyBoard(){
   useEffect(() => {
     
     const styleChar = (char) => {
-      const found = solutions.flat().find(item => item.letter === char;
+      const found = solutions.flat().find(item => item.letter === char);
       return {
         letter: char,
         style: found?.solution || ""

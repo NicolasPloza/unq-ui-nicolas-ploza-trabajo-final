@@ -1,12 +1,10 @@
-# React + Vite
+# Descarga e instalacion del proyecto
+1- Clonar el repositorio https://github.com/NicolasPloza/unq-ui-nicolas-ploza-trabajo-final.git para tener el proyecto localmente
+2- Abrir la terminal con la ruta donde se encuentra guardado el proyecto  
+3- Una vez en la terminal, ingresar la carpeta del proyecto 'unq-ui-nicolas-ploza-trabajo-final' y luego a la carpeta 'trabajo-final'
+4- correr el comando "npm install" para descargar todas las dependencias necesarias 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Ejecutar proyecto
+5- finalmente, Para correr el proyecto, ingresar el comando "npm run dev" 
+6- Abrir en el navegador el puerto local donde este corriendo la app (por defecto  http://localhost:5173/)
+7- elegir dificultad y empezar a jugar 

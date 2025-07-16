@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSesion } from "../contexts/SesionContext"
 import toast from "react-hot-toast"
-import '../App.css'
+import '../styles/App.css'
 
 export default function Settings(){
     

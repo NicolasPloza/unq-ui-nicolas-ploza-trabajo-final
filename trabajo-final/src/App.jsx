@@ -1,4 +1,4 @@
-import './App.css'
+import './styles/App.css'
 import { SesionProvider} from './contexts/SesionContext'
 import Game from './components/Game'
 import { BoardProvider } from './contexts/BoardContext'

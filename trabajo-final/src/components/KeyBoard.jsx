@@ -19,15 +19,12 @@ export default function KeyBoard(){
     third: "zxcvbnm".split(""),
   };
 
-  //esto lo hago para ignorar los acentos de la repuesta q me da la api, para no tener q agregar letras con acentos al teclado
-  const clean = (char) => char.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
-
 
 
   useEffect(() => {
     
     const styleChar = (char) => {
-      const found = solutions.flat().find(item => clean(item.letter) === clean(char));
+      const found = solutions.flat().find(item => item.letter === char;
       return {
         letter: char,
         style: found?.solution || ""

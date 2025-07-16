@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import KeyBoard from "./KeyBoard";
 import { useBoard } from "../contexts/BoardContext";
 
+
 export default function Board(){
     const {row, activeRow} = useBoard();
     const {gameOver, gameWon, toastId, setGameOver} = useSesion();
@@ -21,7 +22,11 @@ export default function Board(){
 
     return (
         <div className={`flex column ${(gameWon || gameOver)? "overshadow": ""}`}>
-            <header><button onClick={handleClick}>Give up</button></header>
+            <header className="header">
+                <button className="give-up" onClick={handleClick}>
+                    Give up
+                </button>
+            </header>
             <div>
                 {[...Array(ATTEMPTS_AMOUNT)]
                     .map((_,i) => <Row key={i} keyRow = {i} isActiveRow={i === activeRow}/>)}

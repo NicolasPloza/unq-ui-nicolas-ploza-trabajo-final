@@ -13,7 +13,6 @@ export function BoardProvider({children}){
     const activeLetter = useRef({letter: '',  position: 0});
     const [renderWord, setRenderWord] = useState([]);
 
-/*-------------------------------------------------------------------------------------------------- */
 
     const checkCurrentWord =  () => {
        

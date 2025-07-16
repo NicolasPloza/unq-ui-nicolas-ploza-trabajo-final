@@ -55,9 +55,6 @@
 }
 
 
-.toast{
-  /*margin-top: 0.1rem;*/
-}
 
 /*GAME OVER MODAL*/
 
@@ -101,6 +98,7 @@
   z-index: 500;
 }
 
+
 @keyframes slideDown {
   80% {
     transform: translateY(-50px);
@@ -112,6 +110,23 @@
   }
 }
 
+/*header*/
+.header{
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  margin-left: 0;
+  padding-bottom: 1.5rem;
+}
+
+.give-up{
+  background-color: #40445c;
+}
+
+.give-up:hover{
+  background-color: #4a3d54;
+}
+
 /*KEYBOARD*/
 .keyboard{
   padding-top: 1.5rem;
@@ -120,6 +135,7 @@
 .key .enter{
     padding: 1rem;
     width: auto;
+    
 }
 
 /*GENERALES*/

@@ -22,7 +22,7 @@ export default function Row({keyRow, isActiveRow}) {
 
         
         return cleanUp;
-    },[renderWord,solutions])
+    },[renderWord,solutions, gameOver])
 
     
 
